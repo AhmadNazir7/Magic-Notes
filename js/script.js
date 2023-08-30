@@ -3,15 +3,21 @@ let addBtn = document.getElementById("addBtn");
 
 addBtn.addEventListener("click", function (e) {
   let addTxt = document.getElementById("addTxt");
+  let addTitle = document.getElementById("addTitle");
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
   } else {
     notesObj = JSON.parse(notes);
   }
-  notesObj.push(addTxt.value);
+  let myObj = {
+    title: addTitle.value,
+    text: addTxt.value
+  }
+  notesObj.push(myObj);
   localStorage.setItem("notes", JSON.stringify(notesObj));
   addTxt.value = "";
+  addTitle.value = "";
   console.log(notesObj);
   // Function To Display Notes in the .notes div
   showNotes();
